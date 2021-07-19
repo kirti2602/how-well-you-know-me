@@ -8,12 +8,12 @@ let score = 0;
 let highScores = [
   {
     name: "Kirti",
-    score: 3,
+    score: 4,
   },
 
   {
     name: "Karan",
-    score: 2,
+    score: 3,
   },
 ]
 
@@ -22,13 +22,19 @@ let questions = [{
   question: "Where do I live? ",
   answer: "Ghaziabad"
 }, {
-  question: "My favorite superhero would be? ",
-  answer: "One Punch Man"
+  question: "When is my Birthday? ",
+  answer: "2 June"
+},
+
+{
+  question: "My favorite anime would be? ",
+  answer: "One Piece"
 },
 {
   question: "Where do I study? ",
   answer: "EIT"
-}];
+}
+];
 
 function welcome() {
  let userName = readlineSync.question(("What's your name? "));
@@ -62,9 +68,10 @@ function game() {
 }
 
 function showScores() {
+  console.log(' ')
   console.log("YAY! You SCORED: ", score);
-
-  console.log("Check out the high scores, if you should be there ping me and I'll update it");
+  console.log(' ')
+  console.log(chalk.green("Check out the Leaderboard"));
 
   highScores.map(score => console.log(score.name, " : ", score.score))
 }
