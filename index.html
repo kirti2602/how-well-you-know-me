@@ -1,0 +1,75 @@
+let readlineSync = require("readline-sync");
+
+const chalk = require('chalk');
+
+let score = 0;
+
+// data of high score
+let highScores = [
+  {
+    name: "Kirti",
+    score: 3,
+  },
+
+  {
+    name: "Karan",
+    score: 2,
+  },
+]
+
+// array of objects
+let questions = [{
+  question: "Where do I live? ",
+  answer: "Ghaziabad"
+}, {
+  question: "My favorite superhero would be? ",
+  answer: "One Punch Man"
+},
+{
+  question: "Where do I study? ",
+  answer: "EIT"
+}];
+
+function welcome() {
+ let userName = readlineSync.question(("What's your name? "));
+
+  console.log("Welcome "+ chalk.cyanBright(userName) + " to DO YOU KNOW " + chalk.bold(" Kirti ") + "?");
+}
+
+
+// play function
+function play(question, answer) {
+  let userAnswer = readlineSync.question(chalk.yellowBright(question));
+
+  if (userAnswer.toUpperCase() === answer.toUpperCase()) { 
+    console.log(chalk.green("✅ right ✅"));
+    score = score + 1;
+    
+  } else {
+    console.log(chalk.red("❌ wrong ❌"));
+   
+  }
+
+  console.log(chalk.black.bgWhite.bold ("current score: ", score));
+  console.log("-------------")
+}
+
+function game() {
+  for (let i=0; i<questions.length; i++) {
+    let currentQuestion = questions[i];
+    play(currentQuestion.question, currentQuestion.answer)
+  }
+}
+
+function showScores() {
+  console.log("YAY! You SCORED: ", score);
+
+  console.log("Check out the high scores, if you should be there ping me and I'll update it");
+
+  highScores.map(score => console.log(score.name, " : ", score.score))
+}
+
+
+welcome();
+game();
+showScores();
